@@ -23,11 +23,6 @@
         <transition on="withoutLogging" to="collectCustomerInfo"/>
     </view-state>
 
-    <view-state id="collectAnonymousCustomerInfo" model="order">
-        <secured attributes="ROLE_USER"/>
-        <transition on="customerInfoCollected" to="collectShippingDetail"/>
-    </view-state>
-
     <action-state id="isUser">
         <secured attributes="ROLE_USER"/>
         <evaluate expression="userServiceImpl.getCurrentUser().getCustomer()" result="order.customer"/>

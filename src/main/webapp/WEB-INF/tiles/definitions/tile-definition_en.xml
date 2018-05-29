@@ -186,13 +186,6 @@
         <put-attribute name="content" value="/WEB-INF/flows/checkout/collectCustomerInfo.jsp"/>
     </definition>
 
-    <definition name="collectAnonymousCustomerInfo" extends="baseLayout">
-        <put-attribute name="title" value="Customer details"/>
-        <put-attribute name="heading" value="Customer details"/>
-        <put-attribute name="tagline" value="Customer details"/>
-        <put-attribute name="content" value="/WEB-INF/flows/checkout/collectCustomerInfo.jsp"/>
-    </definition>
-
     <definition name="collectShippingDetail" extends="baseLayout">
         <put-attribute name="title" value="Shipping details"/>
         <put-attribute name="heading" value="Shipping details"/>
