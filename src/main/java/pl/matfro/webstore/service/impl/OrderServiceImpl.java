@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Map<String, Order> getAllOrders() {
+    public List<Order> getAllOrders() {
         return orderRepository.getAllOrders();
     }
 

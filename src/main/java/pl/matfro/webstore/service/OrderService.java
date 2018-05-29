@@ -12,7 +12,7 @@ public interface OrderService {
 
     Long saveOrder(Order order);
 
-    Map<String, Order> getAllOrders();
+    List<Order> getAllOrders();
 
     Order getOrderById(long orderId);
 }

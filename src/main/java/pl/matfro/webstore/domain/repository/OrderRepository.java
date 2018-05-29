@@ -11,7 +11,7 @@ public interface OrderRepository {
 
     void processOrder(long productId, int count);
 
-    Map<String, Order> getAllOrders();
+    List<Order> getAllOrders();
 
     Order getOrderById(long orderId);
 }

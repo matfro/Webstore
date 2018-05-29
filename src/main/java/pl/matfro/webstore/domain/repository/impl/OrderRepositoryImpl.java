@@ -22,9 +22,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Repository
@@ -94,30 +92,10 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPERVISOR')")
-    public Map<String, Order> getAllOrders() {
+    public List<Order> getAllOrders() {
         Session session = sessionFactory.getCurrentSession();
         session.enableFetchProfile("order-with-cartItemsList");
-
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Tuple> tupleQuery = criteriaBuilder.createTupleQuery();
-        Root<Order> orderRoot = tupleQuery.from(Order.class);
-        Root<User> userRoot = tupleQuery.from(User.class);
-        Path<String> username = userRoot.get("username");
-        tupleQuery.multiselect(username, orderRoot);
-        tupleQuery.where(criteriaBuilder.equal(orderRoot.get("customer"), userRoot.get("customer")));
-
-        List<Order> anonymousOrdersList = session.createQuery("select o from Order o where o.username is null").getResultList();
-
-        List<Tuple> tuples = session.createQuery(tupleQuery).getResultList();
-
-        Map<String, Order> map = new HashMap<>();
-
-        for (Tuple tuple : tuples)
-            map.put((String) tuple.get(0), (Order) tuple.get(1));
-        for (Order order : anonymousOrdersList)
-            map.put("Anonymous" + order.getOrderId(), order);
-
-        return map;
+        return session.createQuery("select o from Order o").getResultList();
     }
 
     @Override

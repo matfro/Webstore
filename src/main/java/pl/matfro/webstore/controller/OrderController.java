@@ -28,12 +28,6 @@ public class OrderController {
     @RequestMapping("/orders")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPERVISOR')")
     public String orders(Model model) {
-//        Map<String, Order> map = new HashMap<>();
-//        for (Tuple tuple : orderService.getAllUsersOrders())
-//            map.put((String) tuple.get(0), (Order) tuple.get(1));
-//        for (Order order : orderService.getAllAnonymousOrders()) {
-//            map.put("Anonymous" + order.getOrderId(), order);
-//        }
         model.addAttribute("orders", orderService.getAllOrders());
         return "allOrders";
     }

@@ -19,7 +19,7 @@
     </decision-state>
 
     <view-state id="anonymousCustomer" model="order">
-        <transition on="login" to="collectAnonymousCustomerInfo"/>
+        <transition on="login" to="isUser"/>
         <transition on="withoutLogging" to="collectCustomerInfo"/>
     </view-state>
 
@@ -29,6 +29,7 @@
     </view-state>
 
     <action-state id="isUser">
+        <secured attributes="ROLE_USER"/>
         <evaluate expression="userServiceImpl.getCurrentUser().getCustomer()" result="order.customer"/>
         <transition to="collectCustomerInfo"/>
     </action-state>
