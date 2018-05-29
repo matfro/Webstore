@@ -27,7 +27,7 @@
                                 <input class="form-control" placeholder="${passwordLabel}" name='password' type="password"
                                        value="">
                             </div>
-                            <input class="btn btn-lg btn-success btn-block" type="submit" value=<spring:message code="login.form.signIn"/> />
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="<spring:message code="login.form.signIn"/>" />
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </fieldset>
                     </form>

@@ -16,7 +16,7 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><spring:message code="passwordChange.legened"/></h3>
+                    <h3 class="panel-title"><spring:message code="passwordChange.legend"/></h3>
                 </div>
                 <div class="panel-body">
                     <form:form modelAttribute="tempPass" class="form-horizontal" enctype="form-data">
