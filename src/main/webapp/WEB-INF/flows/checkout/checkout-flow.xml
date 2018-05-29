@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <var name="order" class="pl.matfro.webstore.domain.Order"/>
+    <var name="user" class="pl.matfro.webstore.security.User"/>
+
+    <action-state id="addCartToOrder">
+        <evaluate expression="cartServiceImpl.validate(requestParameters.cartId)" result="order.cart"/>
+        <transition to="InvalidCartWarning" on-exception="pl.matfro.webstore.exception.InvalidCartException"/>
+        <transition to="checkIfUser"/>
+    </action-state>
+
+    <decision-state id="checkIfUser">
+        <if test="userServiceImpl.isUser()"
+            then="isUser"
+            else="anonymousCustomer"/>
+    </decision-state>
+
+    <view-state id="anonymousCustomer" model="order">
+        <transition on="login" to="collectAnonymousCustomerInfo"/>
+        <transition on="withoutLogging" to="collectCustomerInfo"/>
+    </view-state>
+
+    <view-state id="collectAnonymousCustomerInfo" model="order">
+        <secured attributes="ROLE_USER"/>
+        <transition on="customerInfoCollected" to="collectShippingDetail"/>
+    </view-state>
+
+    <action-state id="isUser">
+        <evaluate expression="userServiceImpl.getCurrentUser().getCustomer()" result="order.customer"/>
+        <transition to="collectCustomerInfo"/>
+    </action-state>
+
+    <view-state id="collectCustomerInfo" model="order">
+        <transition on="customerInfoCollected" to="collectShippingDetail"/>
+    </view-state>
+
+    <view-state id="collectShippingDetail" model="order">
+        <transition on="shippingDetailCollected" to="orderConfirmation"/>
+        <transition on="backToCollectCustomerInfo" to="collectCustomerInfo"/>
+    </view-state>
+
+    <view-state id="orderConfirmation">
+        <transition on="orderConfirmed" to="processOrder"/>
+        <transition on="backToCollectShippingDetail" to="collectShippingDetail"/>
+    </view-state>
+
+    <action-state id="processOrder">
+        <evaluate expression="orderServiceImpl.saveOrder(order)" result="order.orderId"/>
+        <transition to="thankCustomer"/>
+    </action-state>
+
+    <view-state id="InvalidCartWarning">
+        <transition to="endState"/>
+    </view-state>
+
+    <view-state id="thankCustomer" model="order">
+        <transition to="endState"/>
+    </view-state>
+
+    <view-state id="checkoutCancelled" model="order">
+        <transition to="endState"/>
+    </view-state>
+
+    <end-state id="endState"/>
+
+    <global-transitions>
+        <transition on="cancel" to="checkoutCancelled"/>
+    </global-transitions>
+</flow>
