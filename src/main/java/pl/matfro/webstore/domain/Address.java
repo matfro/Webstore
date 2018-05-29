@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Addresses")
+@Table(name = "addresses")
 public class Address implements Serializable {
 
     private static final long serialVersionUID = -530086768384258062L;
@@ -17,17 +17,17 @@ public class Address implements Serializable {
     private long addressId;
 
     @Column(length = 10)
-    @NotNull(message="{Address.doorNo.NotNull.validation}")
+//    @NotNull(message="{Address.doorNo.NotNull.validation}")
     @Size(max=10, message="{Address.doorNo.Size.validation}")
     private String doorNo;
 
     @Column(length = 50)
-    @NotNull(message="{Address.streetName.NotNull.validation}")
+//    @NotNull(message="{Address.streetName.NotNull.validation}")
     @Size(max=50, message="{Address.streetName.Size.validation}")
     private String streetName;
 
     @Column(length = 50)
-    @NotNull(message="{Address.areaName.NotNull.validation}")
+//    @NotNull(message="{Address.areaName.NotNull.validation}")
     @Size(max=50, message="{Address.areaName.Size.validation}")
     private String areaName;
 
@@ -36,12 +36,12 @@ public class Address implements Serializable {
     private String state;
 
     @Column(length = 50)
-    @NotNull(message="{Address.country.NotNull.validation}")
+//    @NotNull(message="{Address.country.NotNull.validation}")
     @Size(max=50, message="{Address.country.Size.validation}")
     private String country;
 
     @Column(length = 10)
-    @NotNull(message="{Address.zipCode.NotNull.validation}")
+//    @NotNull(message="{Address.zipCode.NotNull.validation}")
     @Size(max=10, message="{Address.zipCode.Size.validation}")
     private String zipCode;
 

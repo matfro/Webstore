@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Customers")
+@Table(name = "customers")
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 2284040482222162898L;
@@ -17,12 +17,12 @@ public class Customer implements Serializable {
     private long customerId;
 
     @Column(length = 50)
-    @NotNull(message="{Customer.firstName.NotNull.validation}")
+//    @NotNull(message="{Customer.firstName.NotNull.validation}")
     @Size(max=50, message="{Customer.firstName.Size.validation}")
     private String firstName;
 
     @Column(length = 50)
-    @NotNull(message="{Customer.lastName.NotNull.validation}")
+//    @NotNull(message="{Customer.lastName.NotNull.validation}")
     @Size(max=50, message="{Customer.lastName.Size.validation}")
     private String lastName;
 

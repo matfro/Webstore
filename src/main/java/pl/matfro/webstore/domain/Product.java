@@ -18,7 +18,7 @@ import java.util.Objects;
 
 @XmlRootElement
 @Entity
-@Table(name = "Products")
+@Table(name = "products")
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 3786821105667429681L;

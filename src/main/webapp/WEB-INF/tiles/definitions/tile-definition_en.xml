@@ -14,7 +14,7 @@
     <definition name="welcome" extends="baseLayout">
         <put-attribute name="title" value="Welcome"/>
         <put-attribute name="heading" value="Welcome to our webstore!"/>
-        <put-attribute name="tagline" value="The only one and special webstore!"/>
+        <put-attribute name="tagline" value="The one and only special webstore!"/>
         <put-attribute name="content" value="/WEB-INF/views/welcome.jsp"/>
     </definition>
 

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.matfro</groupId>
     <artifactId>webstore</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-alpha</version>
     <packaging>war</packaging>
     <name>webstore</name>
 
@@ -28,12 +28,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${springframework.security.version}</version>
-            <exclusions>
-                <!--<exclusion>-->
-                <!--<artifactId>spring-asm</artifactId>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--</exclusion>-->
-            </exclusions>
         </dependency>
 
         <dependency>

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 @FetchProfile(name = "order-with-cartItemsList", fetchOverrides = {
         @FetchProfile.FetchOverride(entity = Order.class, association = "cartItemsList", mode = FetchMode.JOIN)
 })
