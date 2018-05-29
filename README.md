@@ -7,4 +7,4 @@ At the first run app imports three basic users with the following credentials:
   2. user: supervisor, password: supervisor
   3. user: user, password: user
   
-Feel free to use them to see how webstore is working as different users with different authorities log in.
+Feel free to use them to see how webstore works as different users with different authorities log in.
