@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
+import pl.matfro.webstore.domain.Address;
 import pl.matfro.webstore.domain.Customer;
 import pl.matfro.webstore.domain.Order;
 import pl.matfro.webstore.security.Authorities;
@@ -74,9 +75,15 @@ public class UserRepositoryImpl implements UserRepository {
 
         user.setAuthorities(authSet);
 
-        user.setCustomer(new Customer());
+        Customer customer = new Customer();
+
+        customer.setBillingAddress(new Address());
+
+        user.setCustomer(customer);
 
         Session session = sessionFactory.getCurrentSession();
+
+        session.save(customer);
 
         session.save(user);
     }
